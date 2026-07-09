@@ -1,0 +1,162 @@
+void queueEnqueue(int data)
+{
+    // Check queue is full or not
+    if (capacity == rear) {
+        printf("\nQueue is full\n");
+        return;
+    }
+
+    // Insert element at the rear
+    else {
+        queue[rear] = data;
+        rear++;
+    }
+    return;
+}
+
+
+void queueDequeue()
+{
+    // If queue is empty
+    if (front == rear) {
+        printf("\nQueue is empty\n");
+        return;
+    }
+
+    // Shift all the elements from index 2
+    // till rear to the left by one
+    else {
+        for (int i = 0; i < rear - 1; i++) {
+            queue[i] = queue[i + 1];
+        }
+
+        // decrement rear
+        rear--;
+    }
+    return;
+}
+
+
+// Function to get front of queue
+int front(Queue* queue)
+{
+    if (isempty(queue))
+        return INT_MIN;
+    return queue->arr[queue->front];
+}
+
+
+int rear(queue<int>& myQueue)
+{
+    queue<int> tempQueue = myQueue;
+
+    while (tempQueue.size() > 1) {
+        tempQueue.pop();
+    }
+
+    return tempQueue.front();
+}
+
+
+// This function will check whether
+// the queue is empty or not:
+bool isEmpty()
+{
+    if (front == -1)
+        return true;
+    else
+        return false;
+}
+
+
+// This function will check
+// whether the queue is full or not.
+bool isFull()
+{
+    if (front == 0 && rear == MAX_SIZE - 1) {
+        return true;
+    }
+    return false;
+}
+
+
+// Implementation of queue(enqueue, dequeue).
+#include <bits/stdc++.h>
+using namespace std;
+
+class Queue {
+public:
+    int front, rear, size;
+    unsigned cap;
+    int* arr;
+};
+
+Queue* createQueue(unsigned cap)
+{
+    Queue* queue = new Queue();
+    queue->cap = cap;
+    queue->front = queue->size = 0;
+
+    queue->rear = cap - 1;
+    queue->arr = new int[(queue->cap * sizeof(int))];
+    return queue;
+}
+
+int isFull(Queue* queue)
+{
+    return (queue->size == queue->cap);
+}
+
+int isempty(Queue* queue) { return (queue->size == 0); }
+// Function to add an item to the queue.
+// It changes rear and size.
+void enqueue(Queue* queue, int item)
+{
+    if (isFull(queue))
+        return;
+    queue->rear = (queue->rear + 1) % queue->cap;
+    queue->arr[queue->rear] = item;
+    queue->size = queue->size + 1;
+    cout << item << " enqueued to queue\n";
+}
+// Function to remove an item from queue.
+// It changes front and size
+int dequeue(Queue* queue)
+{
+    if (isempty(queue))
+        return INT_MIN;
+    int item = queue->arr[queue->front];
+    queue->front = (queue->front + 1) % queue->cap;
+    queue->size = queue->size - 1;
+    return item;
+}
+int front(Queue* queue)
+{
+    if (isempty(queue))
+        return INT_MIN;
+    return queue->arr[queue->front];
+}
+int rear(Queue* queue)
+{
+    if (isempty(queue))
+        return INT_MIN;
+    return queue->arr[queue->rear];
+}
+
+// Driver code
+int main()
+{
+    Queue* queue = createQueue(1000);
+    enqueue(queue, 10);
+    enqueue(queue, 20);
+    enqueue(queue, 30);
+    enqueue(queue, 40);
+    cout << dequeue(queue);
+    cout << " dequeued from queue\n";
+    cout << "Front item is " << front(queue) << endl;
+    cout << "Rear item is " << rear(queue);
+    return 0;
+}
+
+
+

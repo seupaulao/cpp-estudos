@@ -1,0 +1,10 @@
+all: basico.out
+
+basico.out: basico.o
+	 gcc -o basico.out basico.o
+
+basico.o: basico.c
+	 gcc -c basico.c
+     
+clean:
+	 rm basico.o basico.out

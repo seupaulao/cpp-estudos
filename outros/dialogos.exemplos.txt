@@ -1,0 +1,50 @@
+sudo apt-get install dialog 
+
+## --calendar     <text> <height> <width> <day> <month> <year>
+
+dialog --calendar 'calendar'  5 50 30 6 2021
+
+## –checklist    <text> <height> <width> <list height> <tag1> <item1> <status1>…
+
+dialog –checklist  ‘checklist’ 15 10 10 ‘apple’ 5 ‘on’ ‘banana’ 2 ‘off’ ‘coco’ 3 ‘on’ ‘delta’ 4 ‘off’
+
+##  –form <text> <height> <width> <form height> <label1> <l_y1> <l_x1> <item1> <i_y1> <i_x1> <flen1> <ilen1> … 
+
+dialog   –form “Please enter the information” 12 40 4 “Name :” 1 1 “” 1 12 15 0 “Age: ” 2 1 “” 2 12 15 0 “Mail id:” 3 1 “” 3 12 15 0
+
+dialog --gauge  "progress.." 10 20 40
+
+dialog --msgbox  "This is a message" 10 25
+
+dialog --title "fselect" --fselect /documents 15 40
+
+dialog  --infobox   "This is a message" 15 30
+
+dialog  --inputbox "Enter the name" 15 30 'enter here'
+
+dialog –inputmenu “Edit if necessary” 12 45 25 1 “hello” 2 “good morning” 3 ” take care “
+
+dialog –menu “Choose the option” 12 45 25 1 “apple” 2 “banana” 3 “mango”
+
+dialog --pause "pause" 20 40 30
+
+dialog   –mixedform “Please enter the information” 12 40 4 “Name :” 1 1 “” 1 12 15 0 a “Age: ” 2 1 “” 2 12 15 0 a “Mail id:” 3 1 “” 3 12 15 0 a
+
+dialog   --mixedgauge   "Gauge box" 10 20 40 app one
+
+dialog   --passwordbox   "Password" 10 20
+
+dialog   –passwordform “Please enter the information” 12 40 4 “Password:” 1 1 “” 1 12 15 0 “otp: ” 2 1 “” 2 12 15 0 “secret key:” 3 1 “” 3 12 15 0
+
+dialog –radiolist   ‘radiolist’ 15 10 10 ‘apple’ 5 ‘off’ ‘banana’ 2 ‘off’ ‘coffee’ 3 ‘off’ ‘dessert’ 4 ‘off’
+
+dialog --prgbox   "command" "ls"  10 30
+
+## --textbox      <file> <height> <width>
+
+dialog –textbox /etc/hosts 10 60
+
+dialog --tailbox /etc/hosts 10 60
+
+dialog --yesno "Do you want run the command" 10 30
+
